@@ -4,8 +4,7 @@
     <div id="nav">
       <router-link to="/sign_up">Register</router-link> |
       <router-link to="/login">Login</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/">Home</router-link>
+      <router-link to="/calculator">Main</router-link>
     </div>
     <router-view/>
   </div>
