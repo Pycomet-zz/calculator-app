@@ -1,6 +1,6 @@
 <template>
     <div>
-        Logged in
+        User Authenticated -- 
         <span v-if="loggedIn">Yes</span>
         <span v-else>No</span>
         <div>

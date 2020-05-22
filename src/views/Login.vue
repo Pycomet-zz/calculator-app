@@ -10,8 +10,8 @@
                 <input type="password" v-model="password" placeholder="password">
             </div>
             <button type="submit">Sign Up</button>
-            <router-link to="/reset_password">Reset Password</router-link>
         </form>
+        <router-link to="/reset_password">Reset Password</router-link>
     </div>
 </template>
 
