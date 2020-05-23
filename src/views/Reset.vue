@@ -1,22 +1,36 @@
 <template>
-    <div>
-    <div v-if="error" class="error">{{ error.message }}</div>
-    <form @submit.prevent="pressed">
-        <h1>Forget Password?</h1>
-        <p>Please enter your email address below to receive a reset link for your password.</p>
-        <hr>
-        <div class="email">
-            <input type="email" v-model="email" placeholder="email">
-        </div>
-        <button type="submit">Sign Up</button>
-        </form>
+    <div class="display text-center">
+        <mdb-card>
+            <mdb-card-body>
+                <div v-if="error" class="error">{{ error.message }}</div>
+                <form @submit.prevent="pressed">
+                    <h1>Forget Password?</h1>
+                    <p>Please enter your email address below to receive a reset link for your password.</p>
+                    <hr>
+                    <div class="email p-5">
+                        <mdb-input type="email" v-model="email" label="Your Email"/>
+                    </div>
+                    <mdb-btn color="secondary" type="submit">Send Reset Link</mdb-btn>
+                </form>
+            </mdb-card-body>
+        </mdb-card>
     </div>
 </template>
 
 <script>
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { mdbCard, mdbCardBody, mdbBtn, mdbInput } from 'mdbvue';
+
     export default {
+        name: "ResetPassword",
+
+        components: {
+            mdbCardBody,
+            mdbCard,
+            mdbInput,
+            mdbBtn
+        },
         data() {
             return {
                 email: "",
@@ -43,17 +57,8 @@ import "firebase/auth";
     color: red;
     font-size: 18px;
 }
-input {
-    width: 400px;
-    padding: 30px;
-    margin: 20px;
-    font-size: 21px;
-}
-
-button {
-    width: 400px;
-    padding: 20px;
-    height: 75px;
-    font-size: 100%;
+.display {
+    margin: 2px auto;
+    padding: 0 40rem;
 }
 </style>

@@ -1,11 +1,8 @@
 <template>
   <div id="app">
     <top-header></top-header>
-    <div id="nav">
-      <router-link to="/sign_up">Register</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/calculator">Main</router-link>
-    </div>
+    <br>
+    <br>
     <router-view/>
   </div>
 </template>
@@ -26,11 +23,11 @@ import TopHeader from '@/components/Top-Header.vue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #aa3f50;
 }
 
 #nav {
-  padding: 30px;
+  padding: 50px;
 }
 
 #nav a {

@@ -145,7 +145,7 @@ export default {
   display: grid;
   text-align: center;
   margin: auto;
-  padding: 100px;
+  padding: 10px;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(50px, auto);
   width: 300px;
@@ -153,7 +153,6 @@ export default {
   background-color:#EDFFF0;
   border-radius: 15px;
   -webkit-animation: action 1s infinite ease-in;
-  animation: float 2.5s infinite  ease-in;
 }
 .equal {
   border-bottom-right-radius: 15px;
