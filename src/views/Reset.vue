@@ -2,9 +2,10 @@
     <div class="display text-center">
         <mdb-card>
             <mdb-card-body>
-                <div v-if="error" class="error">{{ error.message }}</div>
+                
                 <form @submit.prevent="pressed">
-                    <h1>Forget Password?</h1>
+                    <h2>Forget Your Password?</h2>
+                    <div v-if="error" class="error">{{ error }}</div>
                     <p>Please enter your email address below to receive a reset link for your password.</p>
                     <hr>
                     <div class="email p-5">
@@ -18,8 +19,7 @@
 </template>
 
 <script>
-import * as firebase from "firebase/app";
-import "firebase/auth";
+const fb = require('../firebase.js');
 import { mdbCard, mdbCardBody, mdbBtn, mdbInput } from 'mdbvue';
 
     export default {
@@ -40,11 +40,17 @@ import { mdbCard, mdbCardBody, mdbBtn, mdbInput } from 'mdbvue';
         methods: {
             async pressed() {
                 try {
-                    await firebase.auth().sendPasswordResetEmail(
+                    await fb.auth.sendPasswordResetEmail(
                         this.email
-                    )
-                    window.alert("Link Sent To" + this.email)
+                    );
+                    window.alert("Your password reset link has been sent to " + this.email);
+
+                    this.$router.replace({name: "Login"});
                 }catch(err) {
+
+                    this.email = "";
+
+                    this.error = err.message;
                     window.alert(err.message)
                 }
             }
@@ -53,12 +59,5 @@ import { mdbCard, mdbCardBody, mdbBtn, mdbInput } from 'mdbvue';
 </script>
 
 <style scoped>
-.error {
-    color: red;
-    font-size: 18px;
-}
-.display {
-    margin: 2px auto;
-    padding: 0 40rem;
-}
+
 </style>

@@ -2,9 +2,10 @@
     <div class="display text-center">
         <mdb-card>
             <mdb-card-body>
-                <div v-if="error" class="error">{{ error.message }}</div>
+                
                 <form @submit.prevent="pressed">
                     <p class="h4 text-center mb-4">Sign Up Form</p>
+                    <div v-if="error" class="error">{{ error }}</div>
                     <div class="grey-text text-left">
                         <mdb-input type="text" label="Your name" icon="user" v-model="name"/>
                         <mdb-input type="email" label="Your email" icon="envelope" v-model="email"/>
@@ -22,8 +23,7 @@
 </template>
 
 <script>
-import * as firebase from "firebase/app";
-import "firebase/auth";
+const fb = require('../firebase.js');
 import { mdbInput, mdbBtn, mdbCard, mdbCardBody } from 'mdbvue';
 
     export default {
@@ -38,6 +38,8 @@ import { mdbInput, mdbBtn, mdbCard, mdbCardBody } from 'mdbvue';
                 error: ""
             }
         },
+
+
         
         components: {
             mdbInput,
@@ -55,15 +57,29 @@ import { mdbInput, mdbBtn, mdbCard, mdbCardBody } from 'mdbvue';
 
                 }else {
                     try {
-                        const user = await firebase.auth().createUserWithEmailAndPassword(
+                        const user = await fb.auth.createUserWithEmailAndPassword(
                             this.email,
                             this.password
                         );
+                        console.log(fb.auth.currentUser);
+                        
+                        // Add User Information To Database
+                        await fb.namesRef.push({
+                            uid: fb.auth.currentUser.uid,
+                            name : this.name,
+                            email : this.email,
+                            edit : false
+                        });
 
                         console.log(user);
                         this.$router.replace({name: "Home"});
 
                     }catch(err) {
+                        this.name = "";
+                        this.email = "";
+                        this.password = "";
+                        this.cpassword = "";
+
                         this.error = err.message
                     }
                 }
@@ -75,13 +91,5 @@ import { mdbInput, mdbBtn, mdbCard, mdbCardBody } from 'mdbvue';
 
 <style scoped>
 
-.error {
-    color: red;
-    font-size: 18px;
-}
 
-.display {
-    margin: 2px auto;
-    padding: 0 40rem;
-}
 </style>

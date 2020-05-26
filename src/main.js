@@ -4,25 +4,19 @@ import 'mdbvue/lib/css/mdb.min.css'
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import firebase from 'firebase/app'
+import { rtdbPlugin } from 'vuefire'
 
-Vue.config.productionTip = false
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDXBS78g4AFSXlAL3YneRzxw9QNdF3DAIs",
-  authDomain: "calculator-app-a427d.firebaseapp.com",
-  databaseURL: "https://calculator-app-a427d.firebaseio.com",
-  projectId: "calculator-app-a427d",
-  storageBucket: "calculator-app-a427d.appspot.com",
-  messagingSenderId: "1064653458586",
-  appId: "1:1064653458586:web:5893431b6552a97590a323"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// import { auth } from './firebase'
+const fb = require('./firebase.js')
 
+Vue.use(rtdbPlugin);
+Vue.config.productionTip = false;
+
+
+// Handling page reloads
 let app;
-
-firebase.auth().onAuthStateChanged(user => {
+fb.auth.onAuthStateChanged(user => {
 
   console.log(user)
 

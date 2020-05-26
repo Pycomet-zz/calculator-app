@@ -38,4 +38,13 @@ import TopHeader from '@/components/Top-Header.vue';
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.error {
+    color: red;
+    font-size: 18px;
+}
+
+.display {
+    margin: 2px auto;
+    padding: 0 20%;
+}
 </style>

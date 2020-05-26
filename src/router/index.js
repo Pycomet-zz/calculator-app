@@ -11,7 +11,7 @@ import "firebase/auth";
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Home',
@@ -50,6 +50,7 @@ const router = new VueRouter({
 })
 
 
+// Checks authentication
 router.beforeEach((to, from, next)=> {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
